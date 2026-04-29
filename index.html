@@ -1,7 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Todo App</title>
+  <style>
+  body {
+    background: #111;
+    color: white;
+    font-family: Arial;
+  }
+
+  input, button {
+    padding: 8px;
+    margin: 5px;
+  }
+
+  button {
+    cursor: pointer;
+  }
+</style>
 </head>
 <body>
 
@@ -12,21 +27,36 @@
 
   <ul id="taskList"></ul>
 
-  <script>
-    function addTask() {
-      let input = document.getElementById("taskInput");
-      let task = input.value;
+ <script>
+  function addTask() {
+    let input = document.getElementById("taskInput");
+    let task = input.value;
 
-      if (task === "") return;
+    if (task === "") return;
 
-      let li = document.createElement("li");
-      li.textContent = task;
+    let li = document.createElement("li");
 
-      document.getElementById("taskList").appendChild(li);
+    // task text
+    let span = document.createElement("span");
+    span.textContent = task;
 
-      input.value = "";
-    }
-  </script>
+    // delete button
+    let deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
+    deleteBtn.style.marginLeft = "10px";
+
+    deleteBtn.onclick = function() {
+      li.remove();
+    };
+
+    li.appendChild(span);
+    li.appendChild(deleteBtn);
+
+    document.getElementById("taskList").appendChild(li);
+
+    input.value = "";
+  }
+</script>
 
 </body>
 </html>
